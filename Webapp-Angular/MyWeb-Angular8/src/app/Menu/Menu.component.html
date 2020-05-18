@@ -1,0 +1,42 @@
+
+<div class="menudisplay">
+  <h1 class="display-4 text-center">Menu Mutilevel</h1>
+  <hr>
+  <div class="row">
+    <div class="col-md-5">
+      <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+        <input type="hidden" name="ID" #ID="ngModel" [(ngModel)]="service.formData.ID">
+        <div class="form-group">
+          <label>Name menu</label>
+          <input class="form-control" name="Name" #Name="ngModel" [(ngModel)]="service.formData.Name" >
+        </div>
+        <div class="form-group">
+          <label>Menu Level</label>
+          <input class="form-control" name="MenuLevel" #MenuLevel="ngModel" [(ngModel)]="service.formData.MenuLevel" >
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-lg btn-block">Save</button>
+        </div>
+      </form>
+      <div>
+        <app-menu-list></app-menu-list>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <h5>Please Click Button Open Menu</h5>
+      <div>
+        <button mat-button [matMenuTriggerFor] = "menu">File</button>
+          <mat-menu #menu = "matMenu"   >
+            <button mat-menu-item *ngFor="let item of service.list">
+              {{item.Name}}
+            </button>
+
+          </mat-menu>
+          <!-- <mat-menu #recent = "matMenu">
+            <button mat-menu-item>File 1</button>
+            <button mat-menu-item>File 2</button>
+          </mat-menu> -->
+      </div>
+    </div>
+  </div>
+</div>
